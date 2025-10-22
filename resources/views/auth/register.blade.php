@@ -52,7 +52,11 @@
                 </a>
 
                 <x-button class="ms-4">
+<<<<<<< HEAD
                     {{ __('Registrarse') }}
+=======
+                    {{ __('Register') }}
+>>>>>>> f9689e724ba3b4b63b9b4acf46f2624d56b2a423
                 </x-button>
             </div>
         </form>

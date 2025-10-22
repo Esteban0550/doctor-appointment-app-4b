@@ -59,9 +59,15 @@ return [
 
     'features' => [
         // Features::termsAndPrivacyPolicy(),
+<<<<<<< HEAD
          Features::profilePhotos(),
         // Features::api(),
         // Features::teams(['invitations' => true]),
+=======
+        Features::profilePhotos(),
+        //Features::api(),
+        Features::teams(['invitations' => true]),
+>>>>>>> f9689e724ba3b4b63b9b4acf46f2624d56b2a423
         Features::accountDeletion(),
     ],
 

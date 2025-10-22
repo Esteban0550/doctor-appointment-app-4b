@@ -8,6 +8,7 @@ $links = [
         'active' => request()->routeIs('admin.dashboard'),
     ],
     [
+<<<<<<< HEAD
         'header' => 'Management',
     ],
     [
@@ -15,6 +16,32 @@ $links = [
         'icon' => 'fa-solid fa-user-shield-halved',
         'href' => route('admin.roles.index'),
         'active' => request()->routeIs('admin.roles.*'),
+=======
+        'header' => 'Hospital',
+    ],
+    [
+        'name' => 'Dashboard',
+        'icon' => 'fa-solid fa-gauge',
+        'href' => route('admin.dashboard'),
+        'active' => false,
+        'submenu' => [
+            [
+                'name' => 'Ian onosetsual',
+                'href' => '#',
+                'active' => false,
+            ],
+            [
+                'name' => 'Billing',
+                'href' => '#',
+                'active' => false,
+            ],
+            [
+                'name' => 'Invoice',
+                'href' => '#',
+                'active' => false,
+            ],
+        ]
+>>>>>>> f9689e724ba3b4b63b9b4acf46f2624d56b2a423
     ]
 ];
 @endphp

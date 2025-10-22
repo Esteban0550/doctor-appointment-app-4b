@@ -10,7 +10,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | Requests from the following domains / hosts will receive stateful API
+<<<<<<< HEAD
     | authentication cookies. Typically, these should includes your local
+=======
+    | authentication cookies. Typically, these should include your local
+>>>>>>> f9689e724ba3b4b63b9b4acf46f2624d56b2a423
     | and production domains which access your API via a frontend SPA.
     |
     */

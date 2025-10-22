@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "831d50048adf91fabefc65733b4351f9",
+=======
+    "content-hash": "4324cc32a7fd7a9c3b6fc99203340db1",
+>>>>>>> f9689e724ba3b4b63b9b4acf46f2624d56b2a423
     "packages": [
         {
             "name": "archtechx/enums",
@@ -2231,6 +2235,7 @@
         },
         {
             "name": "laravel-lang/lang",
+<<<<<<< HEAD
             "version": "15.25.0",
             "source": {
                 "type": "git",
@@ -2241,6 +2246,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/4db5447efd09546a2dff3f2e00cfbf182cdc0abb",
                 "reference": "4db5447efd09546a2dff3f2e00cfbf182cdc0abb",
+=======
+            "version": "15.24.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Laravel-Lang/lang.git",
+                "reference": "495096372a2c45a69f9a2759973495c9d013367f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Laravel-Lang/lang/zipball/495096372a2c45a69f9a2759973495c9d013367f",
+                "reference": "495096372a2c45a69f9a2759973495c9d013367f",
+>>>>>>> f9689e724ba3b4b63b9b4acf46f2624d56b2a423
                 "shasum": ""
             },
             "require": {
@@ -2291,7 +2308,11 @@
                 "issues": "https://github.com/Laravel-Lang/lang/issues",
                 "source": "https://github.com/Laravel-Lang/lang"
             },
+<<<<<<< HEAD
             "time": "2025-09-14T01:43:56+00:00"
+=======
+            "time": "2025-09-10T20:41:54+00:00"
+>>>>>>> f9689e724ba3b4b63b9b4acf46f2624d56b2a423
         },
         {
             "name": "laravel-lang/locale-list",
