@@ -1,42 +1,45 @@
+@props([
+    'title' => config('app.name', 'Laravel'),
+    'breadcrumbs' => []
+])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="simifibra" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ $title }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=inter:400,600&display=swap">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <!-- Scripts -->
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://kit.fontawesome.com/a7de8752fc.js" crossorigin="anonymous"></script>
 
-    <!-- WireUI -->
-    <wireui:scripts />
+        <wireui:scripts />
+        {{-- Livewire Scripts --}}
+        @livewireScripts
 
-    <!-- Styles -->
-    @livewireStyles
-</head>
-<body class="font-sans antialiased bg-gray-300" style="background-image: url('{{ asset('metriass 4to/back/tu-imagen.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
+        <!-- Styles -->
+        @livewireStyles
+    </head>
+    <body class="font-sans antialiased bg-gray-50">
+        @include('layouts.includes.admin.navigation')
 
-@include('layouts.includes.admin.navigation')
+        @include('layouts.includes.admin.sidebar')
 
-@include('layouts.includes.admin.sidebar')
+        <div class="p-4 sm:ml-64">
+            <!-- Margin top 14px -->
+            <div class="mt-14">
+                @include('layouts.includes.admin.breadcrumb')
+                {{ $slot }}
+            </div>
+        </div>
 
-<div class="p-4 sm:ml-64">
-    <div class="mt-14">
-        {{$slot}}
-    </div>
-</div>
+        @stack('modals')
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
-@stack('modals')
-
-@livewireScripts
-
-<script src="https://cdn.jsdelivr.net/npm/estasimi@latest/dist/estasimi.min.js"></script>
-<script src="https://kit.fontawesome.com/337049a37c.js" crossorigin="anonymous"></script>
-
-</body>
-</html>
+    </body>
