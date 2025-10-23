@@ -1,45 +1,22 @@
 <x-admin-layout 
     title="Roles"
     :breadcrumbs="[
-        [
-            'name' => 'Dashboard',
-            'url'  => route('admin.dashboard')
-        ],
-        [
-            'name' => 'Roles',
-            'url'  => route('admin.roles.index')
-        ]
-    ]">
+        ['name' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['name' => 'Roles',     'url' => route('admin.roles.index')],
+    ]"
+>
+    <section class="p-4 bg-white rounded-lg shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+            <h1 class="text-lg font-semibold text-gray-800">Roles</h1>
 
-    {{-- 👇 AQUÍ EMPIEZA EL CONTENIDO DE TU PÁGINA 👇 --}}
-    
-    <div class="p-4 bg-white rounded-lg shadow-md">
-        
-        {{-- Botón para crear un nuevo rol --}}
-        <div class="mb-4">
-            <a href="{{ route('admin.roles.create') }}" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700">
-                Crear Nuevo Rol
+            <a
+                href="{{ route('admin.roles.create') }}"
+                class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+                Crear nuevo rol
             </a>
         </div>
 
-        {{-- Aquí iría la tabla que muestra todos los roles --}}
-        <table class="min-w-full leading-normal">
-            <thead>
-                <tr>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                        Nombre del Rol
-                    </th>
-                    <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {{-- Aquí harías un bucle para mostrar cada rol --}}
-                {{-- @foreach ($roles as $role) ... @endforeach --}}
-            </tbody>
-        </table>
-
-    </div>
-
-    {{-- 👆 AQUÍ TERMINA EL CONTENIDO DE TU PÁGINA 👆 --}}
-
+        @livewire('admin.datatables.role-table')
+    </section>
 </x-admin-layout>
