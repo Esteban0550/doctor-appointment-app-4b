@@ -71,8 +71,7 @@
 
                                 <button
                                     type="button"
-                                    wire:click="delete({{ $user->id }})"
-                                    wire:confirm="¿Estás seguro de eliminar este usuario?"
+                                    onclick="confirmDelete({{ $user->id }})"
                                     class="inline-flex items-center justify-center p-2 text-red-600 bg-red-100 hover:bg-red-200 rounded-lg transition-colors duration-150"
                                     title="Eliminar usuario"
                                 >
@@ -98,4 +97,23 @@
         {{ $users->links() }}
     </div>
 </div>
+
+<script>
+    function confirmDelete(userId) {
+        Swal.fire({
+            title: "¿Estás seguro?",
+            text: "¡No podrás revertir esto!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Sí, eliminar!",
+            cancelButtonText: "Cancelar"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                @this.delete(userId);
+            }
+        });
+    }
+</script>
 

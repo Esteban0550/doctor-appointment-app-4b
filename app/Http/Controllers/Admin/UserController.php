@@ -38,10 +38,10 @@ class UserController extends Controller
         session()->flash('swal', [
             'icon'  => 'success',
             'title' => 'Usuario creado correctamente',
-            'text'  => 'El usuario ha sido registrado exitosamente',
+            'text'  => 'El usuario ha sido creado exitosamente'
         ]);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', '¡Usuario creado exitosamente!');
     }
 
     public function edit(User $user)

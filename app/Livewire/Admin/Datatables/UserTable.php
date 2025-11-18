@@ -41,13 +41,21 @@ class UserTable extends Component
         $user = User::findOrFail($userId);
 
         if (auth()->check() && auth()->id() === $user->id) {
-            session()->flash('message', 'No puedes eliminar tu propio usuario mientras estás autenticado.');
+            session()->flash('swal', [
+                'icon'  => 'error',
+                'title' => 'Error',
+                'text'  => 'No puedes eliminar tu propio usuario mientras estás autenticado.'
+            ]);
             return;
         }
 
         $user->delete();
 
-        session()->flash('message', 'Usuario eliminado exitosamente.');
+        session()->flash('swal', [
+            'icon'  => 'success',
+            'title' => '¡Eliminado!',
+            'text'  => 'El usuario ha sido eliminado correctamente.'
+        ]);
 
         $this->resetPage();
     }
