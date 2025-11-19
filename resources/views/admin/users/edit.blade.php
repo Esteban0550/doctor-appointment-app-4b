@@ -47,6 +47,79 @@
 
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
                 <div>
+                    <label for="id_number" class="block mb-2 text-sm font-bold text-gray-700">
+                        Número de ID
+                    </label>
+                    <input
+                        type="text"
+                        id="id_number"
+                        name="id_number"
+                        value="{{ old('id_number', $user->id_number) }}"
+                        class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-300"
+                        placeholder="1234567890"
+                    >
+                    @error('id_number')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+
+                <div>
+                    <label for="phone" class="block mb-2 text-sm font-bold text-gray-700">
+                        Teléfono
+                    </label>
+                    <input
+                        type="text"
+                        id="phone"
+                        name="phone"
+                        value="{{ old('phone', $user->phone) }}"
+                        class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-300"
+                        placeholder="5555555555"
+                    >
+                    @error('phone')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+
+            <div>
+                <label for="address" class="block mb-2 text-sm font-bold text-gray-700">
+                    Dirección
+                </label>
+                <textarea
+                    id="address"
+                    name="address"
+                    rows="3"
+                    class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-300"
+                    placeholder="123 Main St, Anytown, USA"
+                >{{ old('address', $user->address) }}</textarea>
+                @error('address')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label for="role" class="block mb-2 text-sm font-bold text-gray-700">
+                    Rol
+                </label>
+                <select
+                    id="role"
+                    name="role"
+                    class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow focus:outline-none focus:ring-2 focus:ring-blue-300"
+                >
+                    <option value="">Seleccionar rol</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->name }}" {{ (old('role', $user->roles->first()?->name) == $role->name) ? 'selected' : '' }}>
+                            {{ $role->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('role')
+                    <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <div>
                     <label for="password" class="block mb-2 text-sm font-bold text-gray-700">
                         Nueva contraseña
                     </label>

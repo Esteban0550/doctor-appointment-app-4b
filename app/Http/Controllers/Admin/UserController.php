@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -18,22 +19,34 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        return view('admin.users.create', compact('roles'));
     }
 
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name'     => ['required', 'string', 'max:255'],
-            'email'    => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
-            'password' => ['required', 'confirmed', Password::defaults()],
+            'name'      => ['required', 'string', 'max:255'],
+            'email'     => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'password'  => ['required', 'confirmed', Password::defaults()],
+            'id_number' => ['nullable', 'string', 'max:255'],
+            'phone'     => ['nullable', 'string', 'max:255'],
+            'address'   => ['nullable', 'string'],
+            'role'      => ['nullable', 'exists:roles,name'],
         ]);
 
-        User::create([
-            'name'     => $validated['name'],
-            'email'    => $validated['email'],
-            'password' => Hash::make($validated['password']),
+        $user = User::create([
+            'name'      => $validated['name'],
+            'email'     => $validated['email'],
+            'password'  => Hash::make($validated['password']),
+            'id_number' => $validated['id_number'] ?? null,
+            'phone'     => $validated['phone'] ?? null,
+            'address'   => $validated['address'] ?? null,
         ]);
+
+        if (!empty($validated['role'])) {
+            $user->assignRole($validated['role']);
+        }
 
         session()->flash('swal', [
             'icon'  => 'success',
@@ -46,20 +59,28 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('admin.users.edit', compact('user'));
+        $roles = Role::all();
+        return view('admin.users.edit', compact('user', 'roles'));
     }
 
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name'     => ['required', 'string', 'max:255'],
+            'name'      => ['required', 'string', 'max:255'],
             'email'    => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->ignore($user->id)],
-            'password' => ['nullable', 'confirmed', Password::defaults()],
+            'password'  => ['nullable', 'confirmed', Password::defaults()],
+            'id_number' => ['nullable', 'string', 'max:255'],
+            'phone'     => ['nullable', 'string', 'max:255'],
+            'address'   => ['nullable', 'string'],
+            'role'      => ['nullable', 'exists:roles,name'],
         ]);
 
         $data = [
-            'name'  => $validated['name'],
-            'email' => $validated['email'],
+            'name'      => $validated['name'],
+            'email'     => $validated['email'],
+            'id_number' => $validated['id_number'] ?? null,
+            'phone'     => $validated['phone'] ?? null,
+            'address'   => $validated['address'] ?? null,
         ];
 
         if (!empty($validated['password'])) {
@@ -67,6 +88,13 @@ class UserController extends Controller
         }
 
         $user->update($data);
+
+        // Actualizar rol
+        if (!empty($validated['role'])) {
+            $user->syncRoles([$validated['role']]);
+        } else {
+            $user->syncRoles([]);
+        }
 
         session()->flash('swal', [
             'icon'  => 'success',

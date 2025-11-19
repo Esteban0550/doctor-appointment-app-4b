@@ -21,11 +21,14 @@ class UserTable extends Component
     public function render()
     {
         $users = User::query()
+            ->with('roles')
             ->when($this->search, function ($query) {
                 $query->where(function ($subQuery) {
                     $subQuery
                         ->where('name', 'like', '%' . $this->search . '%')
-                        ->orWhere('email', 'like', '%' . $this->search . '%');
+                        ->orWhere('email', 'like', '%' . $this->search . '%')
+                        ->orWhere('id_number', 'like', '%' . $this->search . '%')
+                        ->orWhere('phone', 'like', '%' . $this->search . '%');
                 });
             })
             ->orderByDesc('created_at')
