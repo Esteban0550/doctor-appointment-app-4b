@@ -54,7 +54,7 @@ class UserTable extends Component
 
         $user->delete();
 
-        session()->flash('swal', [
+        $this->dispatch('swal', [
             'icon'  => 'success',
             'title' => '¡Eliminado!',
             'text'  => 'El usuario ha sido eliminado correctamente.'

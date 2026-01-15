@@ -122,5 +122,10 @@
             }
         });
     }
+
+    // Escuchar el evento de Livewire para mostrar SweetAlert
+    Livewire.on('swal', (event) => {
+        Swal.fire(event[0]);
+    });
 </script>
 
