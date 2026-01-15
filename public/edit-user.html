@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #5568d3;
+        }
+        .note {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✏️ Editar Usuario</h1>
+        
+        <form id="editUserForm">
+            <div class="form-group">
+                <label for="name">Nombre completo *</label>
+                <input type="text" id="name" name="name" required 
+                       placeholder="Ej: Juan Pérez">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required 
+                       placeholder="ejemplo@correo.com">
+            </div>
+
+            <div class="form-group">
+                <label for="id_number">Número de identificación</label>
+                <input type="text" id="id_number" name="id_number" 
+                       placeholder="INE, Pasaporte, etc.">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone" 
+                       placeholder="+52 999 123 4567">
+            </div>
+
+            <div class="form-group">
+                <label for="address">Dirección</label>
+                <input type="text" id="address" name="address" 
+                       placeholder="Calle, Colonia, Ciudad">
+            </div>
+
+            <div class="form-group">
+                <label for="role">Rol *</label>
+                <select id="role" name="role" required>
+                    <option value="">Seleccione un rol</option>
+                    <option value="admin">Administrador</option>
+                    <option value="doctor">Doctor</option>
+                    <option value="patient">Paciente</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Nueva contraseña</label>
+                <input type="password" id="password" name="password" 
+                       placeholder="Dejar vacío para no cambiar">
+                <p class="note">Solo ingrese una contraseña si desea cambiarla</p>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation">Confirmar contraseña</label>
+                <input type="password" id="password_confirmation" name="password_confirmation" 
+                       placeholder="Confirme la nueva contraseña">
+            </div>
+
+            <button type="submit" class="btn">Actualizar Usuario</button>
+        </form>
+    </div>
+
+    <script>
+        // Simular carga de datos del usuario
+        window.addEventListener('DOMContentLoaded', function() {
+            // Aquí normalmente cargarías los datos del usuario desde la API
+            document.getElementById('name').value = 'Juan Pérez';
+            document.getElementById('email').value = 'juan@example.com';
+            document.getElementById('id_number').value = 'INE123456';
+            document.getElementById('phone').value = '+52 999 123 4567';
+            document.getElementById('address').value = 'Calle 60, Centro, Mérida';
+            document.getElementById('role').value = 'patient';
+        });
+
+        // Manejar el envío del formulario
+        document.getElementById('editUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                id_number: document.getElementById('id_number').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                role: document.getElementById('role').value,
+                password: document.getElementById('password').value,
+                password_confirmation: document.getElementById('password_confirmation').value
+            };
+
+            // Validar contraseñas si se ingresaron
+            if (formData.password && formData.password !== formData.password_confirmation) {
+                alert('❌ Las contraseñas no coinciden');
+                return;
+            }
+
+            // Aquí harías la petición PUT al servidor
+            console.log('Actualizando usuario:', formData);
+            
+            // Mostrar mensaje de éxito
+            alert('✅ Usuario actualizado exitosamente');
+            
+            // Redirigir (ajusta la ruta según tu proyecto)
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
