@@ -157,11 +157,8 @@
                 </a>
                 <button
                     type="submit"
-                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-gray-500 border border-transparent rounded-lg text-sm font-semibold text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-colors duration-150"
+                    class="inline-flex items-center px-5 py-2.5 bg-gray-500 border border-transparent rounded-lg text-sm font-semibold text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 transition-colors duration-150"
                 >
-                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
-                    </svg>
                     Guardar usuario
                 </button>
             </div>
