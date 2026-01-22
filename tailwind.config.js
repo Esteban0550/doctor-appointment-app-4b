@@ -62,4 +62,4 @@ sans: ["Figtree", ...defaultTheme.fontFamily.sans],
 
 plugins: [forms, typography, flowbite],
 
-}; en
+};

@@ -23,57 +23,46 @@
             <div class="flex items-center">
 
                 @auth
-                    <!-- Settings Dropdown -->
-                    <div class="ms-3 relative">
-                        <x-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                {{-- Añadidos mejores estilos de focus (anillo azul) y transición --}}
-                                <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 transition-all duration-150">
-                                    @if (Auth::user()->profile_photo_url)
-                                        <img class="size-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
-                                    @else
-                                        <span class="inline-flex items-center justify-center size-8 rounded-full bg-blue-600 text-white font-medium">
-                                            @php
-                                                $names = explode(' ', Auth::user()->name);
-                                                $initials = count($names) > 1 
-                                                    ? strtoupper(substr($names[0], 0, 1) . substr(end($names), 0, 1))
-                                                    : strtoupper(substr($names[0], 0, 2));
-                                            @endphp
-                                            {{ $initials }}
-                                        </span>
-                                    @endif
-                                </button>
-                            </x-slot>
+                    <!-- Profile Dropdown -->
+                    <div class="ms-3 relative" x-data="{ open: false }" @click.away="open = false">
+                        <button type="button" @click="open = !open" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-150 cursor-pointer hover:opacity-80">
+                            @if (Auth::user()->profile_photo_url)
+                                <img class="size-8 rounded-full object-cover" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                            @else
+                                <span class="inline-flex items-center justify-center size-8 rounded-full bg-blue-600 text-white font-medium">
+                                    @php
+                                        $names = explode(' ', Auth::user()->name);
+                                        $initials = count($names) > 1 
+                                            ? strtoupper(substr($names[0], 0, 1) . substr(end($names), 0, 1))
+                                            : strtoupper(substr($names[0], 0, 2));
+                                    @endphp
+                                    {{ $initials }}
+                                </span>
+                            @endif
+                        </button>
 
-                            <x-slot name="content">
-                                <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Manage Account') }}
-                                </div>
-
-                                <x-dropdown-link href="{{ route('profile.show') }}">
-                                    {{ __('Profile') }}
-                                </x-dropdown-link>
-
-                                @if (defined('Laravel\Jetstream\Jetstream::hasApiFeatures') && Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                    <x-dropdown-link href="{{ route('api-tokens.index') }}">
-                                        {{ __('API Tokens') }}
-                                    </x-dropdown-link>
-                                @endif
-
-                                <div class="border-t border-gray-200 dark:border-gray-700"></div>
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}" x-data>
+                        <!-- Dropdown Menu -->
+                        <div x-show="open" 
+                             x-transition:enter="transition ease-out duration-200"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="transform opacity-100 scale-100"
+                             x-transition:leave-end="transform opacity-0 scale-95"
+                             class="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+                             style="display: none;">
+                            <div class="py-1">
+                                <a href="{{ route('profile.show') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Perfil
+                                </a>
+                                <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-
-                                    <x-dropdown-link href="{{ route('logout') }}"
-                                                    @click.prevent="$root.submit();">
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
+                                    <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        Cerrar sesión
+                                    </button>
                                 </form>
-                            </x-slot>
-                        </x-dropdown>
+                            </div>
+                        </div>
                     </div>
                 
                 @else
