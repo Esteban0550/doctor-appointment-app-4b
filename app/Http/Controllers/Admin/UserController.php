@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -46,6 +47,11 @@ class UserController extends Controller
 
         if (!empty($validated['role'])) {
             $user->assignRole($validated['role']);
+            
+            // Si el rol es "Paciente", crear registro de paciente
+            if ($validated['role'] === 'Paciente') {
+                Patient::firstOrCreate(['user_id' => $user->id]);
+            }
         }
 
         session()->flash('swal', [
@@ -90,10 +96,26 @@ class UserController extends Controller
         $user->update($data);
 
         // Actualizar rol
+        $previousRoles = $user->roles->pluck('name')->toArray();
+        
         if (!empty($validated['role'])) {
             $user->syncRoles([$validated['role']]);
+            
+            // Si el nuevo rol es "Paciente" y no tenía ese rol antes, crear registro de paciente
+            if ($validated['role'] === 'Paciente' && !in_array('Paciente', $previousRoles)) {
+                Patient::firstOrCreate(['user_id' => $user->id]);
+            }
+            
+            // Si el rol cambió de "Paciente" a otro, eliminar registro de paciente
+            if (in_array('Paciente', $previousRoles) && $validated['role'] !== 'Paciente') {
+                $user->patient?->delete();
+            }
         } else {
             $user->syncRoles([]);
+            // Si tenía rol de Paciente, eliminar registro de paciente
+            if (in_array('Paciente', $previousRoles)) {
+                $user->patient?->delete();
+            }
         }
 
         session()->flash('swal', [
