@@ -45,12 +45,14 @@ class UserController extends Controller
             'address'   => $validated['address'] ?? null,
         ]);
 
+        $patient = null;
+        
         if (!empty($validated['role'])) {
             $user->assignRole($validated['role']);
             
             // Si el rol es "Paciente", crear registro de paciente
             if ($validated['role'] === 'Paciente') {
-                Patient::firstOrCreate(['user_id' => $user->id]);
+                $patient = Patient::firstOrCreate(['user_id' => $user->id]);
             }
         }
 
@@ -59,6 +61,11 @@ class UserController extends Controller
             'title' => 'Usuario creado correctamente',
             'text'  => 'El usuario ha sido creado exitosamente'
         ]);
+
+        // Si es un paciente, redirigir a la página de edición del paciente
+        if ($patient) {
+            return redirect()->route('admin.patients.edit', $patient)->with('success', '¡Paciente creado exitosamente!');
+        }
 
         return redirect()->route('admin.users.index')->with('success', '¡Usuario creado exitosamente!');
     }
