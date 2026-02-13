@@ -3,14 +3,14 @@
     :breadcrumbs="[
         [
             'name' => 'Dashboard',
-            'url'  => route('admin.dashboard')
+            'href'  => route('admin.dashboard')
         ],
         [
             'name' => 'Roles',
-            'url'  => route('admin.roles.index')
+            'href'  => route('admin.roles.index')
         ],
         [
-            'name' => 'Create'
+            'name' => 'Crear'
         ]
     ]">
 

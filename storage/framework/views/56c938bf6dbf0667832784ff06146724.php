@@ -77,7 +77,7 @@ unset($__defined_vars, $__key, $__value); ?>
         <div class="p-4 sm:ml-64">
             <!-- Margin top 14px -->
             <div class="mt-14">
-                <?php echo $__env->make('layouts.includes.admin.breadcrumb', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+                <?php echo $__env->make('layouts.includes.admin.breadcrumb', ['breadcrumbs' => $breadcrumbs], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
                 
                 <?php echo e($slot); ?>
 

@@ -1,8 +1,8 @@
 <x-admin-layout 
     title="Roles"
     :breadcrumbs="[
-        ['name' => 'Dashboard', 'url' => route('admin.dashboard')],
-        ['name' => 'Roles',     'url' => route('admin.roles.index')],
+        ['name' => 'Dashboard', 'href' => route('admin.dashboard')],
+        ['name' => 'Roles',     'href' => route('admin.roles.index')],
     ]"
 >
     <section class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">

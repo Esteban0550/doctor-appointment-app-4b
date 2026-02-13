@@ -1,7 +1,7 @@
 <x-admin-layout
     title="Perfil"
     :breadcrumbs="[
-        ['name' => 'Dashboard', 'url' => route('admin.dashboard')],
+        ['name' => 'Dashboard', 'href' => route('admin.dashboard')],
         ['name' => 'Perfil'],
     ]"
 >

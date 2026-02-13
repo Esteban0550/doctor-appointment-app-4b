@@ -1,8 +1,8 @@
 <x-admin-layout
     title="Pacientes"
     :breadcrumbs="[
-        ['name' => 'Dashboard', 'url' => route('admin.dashboard')],
-        ['name' => 'Pacientes', 'url' => route('admin.patients.index')],
+        ['name' => 'Dashboard', 'href' => route('admin.dashboard')],
+        ['name' => 'Pacientes', 'href' => route('admin.patients.index')],
     ]"
 >
     <section class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">

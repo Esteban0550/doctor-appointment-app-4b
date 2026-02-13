@@ -43,7 +43,7 @@
         <div class="p-4 sm:ml-64">
             <!-- Margin top 14px -->
             <div class="mt-14">
-                @include('layouts.includes.admin.breadcrumb')
+                @include('layouts.includes.admin.breadcrumb', ['breadcrumbs' => $breadcrumbs])
                 {{-- Aquí se carga el contenido de la página (index.blade.php) --}}
                 {{ $slot }}
             </div>

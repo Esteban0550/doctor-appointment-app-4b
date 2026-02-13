@@ -1,8 +1,8 @@
 <x-admin-layout
     title="Usuarios"
     :breadcrumbs="[
-        ['name' => 'Dashboard', 'url' => route('admin.dashboard')],
-        ['name' => 'Usuarios', 'url' => route('admin.users.index')],
+        ['name' => 'Dashboard', 'href' => route('admin.dashboard')],
+        ['name' => 'Usuarios', 'href' => route('admin.users.index')],
     ]"
 >
     <section class="p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg">
