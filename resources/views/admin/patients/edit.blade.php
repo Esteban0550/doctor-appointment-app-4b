@@ -63,99 +63,47 @@
 
         {{-- Tabs de navegación --}}
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-            <div x-data="{ activeTab: '{{ $initialTab }}' }">
+            <x-tabs :initialTab="$initialTab">
                 {{-- Menú de pestañas --}}
                 <div class="border-b border-gray-200 dark:border-gray-700 mb-6">
                     <ul class="flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                        <li class="me-2">
-                            <a 
-                                href="#" 
-                                @click.prevent="activeTab = 'datos-personales'"
-                                :class="activeTab === 'datos-personales' 
-                                    ? 'text-blue-600 border-blue-600 dark:text-blue-500 dark:border-blue-500 active' 
-                                    : 'text-gray-500 hover:text-blue-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 border-transparent'"
-                                class="inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg transition-colors duration-200"
-                            >
-                                <i class="fa-solid fa-user mr-2"></i>
-                                Datos Personales
-                            </a>
-                        </li>
-                        <li class="me-2">
-                            @php
-                                $hasErrorAntecedentes = $errors->hasAny($errorGroups['antecedentes']);
-                            @endphp
-                            <a 
-                                href="#" 
-                                @click.prevent="activeTab = 'antecedentes'"
-                                class="inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg transition-colors duration-200
-                                    {{ $hasErrorAntecedentes && $initialTab !== 'antecedentes' ? 'text-red-600 border-red-600' : '' }}
-                                    {{ $hasErrorAntecedentes && $initialTab === 'antecedentes' ? 'text-red-600 border-red-600 active' : '' }}
-                                    {{ !$hasErrorAntecedentes && $initialTab === 'antecedentes' ? 'text-blue-600 border-blue-600 active' : '' }}
-                                    {{ !$hasErrorAntecedentes && $initialTab !== 'antecedentes' ? 'text-gray-500 hover:text-blue-600 hover:border-gray-300 border-transparent' : '' }}"
-                                :class="activeTab === 'antecedentes' 
-                                    ? '{{ $hasErrorAntecedentes ? "text-red-600 border-red-600" : "text-blue-600 border-blue-600" }}' 
-                                    : '{{ $hasErrorAntecedentes ? "text-red-600 border-red-600" : "text-gray-500 hover:text-blue-600 hover:border-gray-300 border-transparent" }}'"
-                            >
-                                <i class="fa-solid fa-file-lines mr-2"></i>
-                                Antecedentes
-                                @if($hasErrorAntecedentes)
-                                    <i class="fa-solid fa-circle-exclamation ms-2 animate-pulse"></i>
-                                @endif
-                            </a>
-                        </li>
-                        <li class="me-2">
-                            @php
-                                $hasErrorInformacion = $errors->hasAny($errorGroups['informacion_general']);
-                            @endphp
-                            <a 
-                                href="#" 
-                                @click.prevent="activeTab = 'informacion-general'"
-                                class="inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg transition-colors duration-200
-                                    {{ $hasErrorInformacion && $initialTab !== 'informacion-general' ? 'text-red-600 border-red-600' : '' }}
-                                    {{ $hasErrorInformacion && $initialTab === 'informacion-general' ? 'text-red-600 border-red-600 active' : '' }}
-                                    {{ !$hasErrorInformacion && $initialTab === 'informacion-general' ? 'text-blue-600 border-blue-600 active' : '' }}
-                                    {{ !$hasErrorInformacion && $initialTab !== 'informacion-general' ? 'text-gray-500 hover:text-blue-600 hover:border-gray-300 border-transparent' : '' }}"
-                                :class="activeTab === 'informacion-general' 
-                                    ? '{{ $hasErrorInformacion ? "text-red-600 border-red-600" : "text-blue-600 border-blue-600" }}' 
-                                    : '{{ $hasErrorInformacion ? "text-red-600 border-red-600" : "text-gray-500 hover:text-blue-600 hover:border-gray-300 border-transparent" }}'"
-                            >
-                                <i class="fa-solid fa-info mr-2"></i>
-                                Información General
-                                @if($hasErrorInformacion)
-                                    <i class="fa-solid fa-circle-exclamation ms-2 animate-pulse"></i>
-                                @endif
-                            </a>
-                        </li>
-                        <li class="me-2">
-                            @php
-                                $hasErrorContacto = $errors->hasAny($errorGroups['contacto_emergencia']);
-                            @endphp
-                            <a 
-                                href="#" 
-                                @click.prevent="activeTab = 'contacto-emergencia'"
-                                class="inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg transition-colors duration-200
-                                    {{ $hasErrorContacto && $initialTab !== 'contacto-emergencia' ? 'text-red-600 border-red-600' : '' }}
-                                    {{ $hasErrorContacto && $initialTab === 'contacto-emergencia' ? 'text-red-600 border-red-600 active' : '' }}
-                                    {{ !$hasErrorContacto && $initialTab === 'contacto-emergencia' ? 'text-blue-600 border-blue-600 active' : '' }}
-                                    {{ !$hasErrorContacto && $initialTab !== 'contacto-emergencia' ? 'text-gray-500 hover:text-blue-600 hover:border-gray-300 border-transparent' : '' }}"
-                                :class="activeTab === 'contacto-emergencia' 
-                                    ? '{{ $hasErrorContacto ? "text-red-600 border-red-600" : "text-blue-600 border-blue-600" }}' 
-                                    : '{{ $hasErrorContacto ? "text-red-600 border-red-600" : "text-gray-500 hover:text-blue-600 hover:border-gray-300 border-transparent" }}'"
-                            >
-                                <i class="fa-solid fa-heart mr-2"></i>
-                                Contacto de Emergencia
-                                @if($hasErrorContacto)
-                                    <i class="fa-solid fa-circle-exclamation ms-2 animate-pulse"></i>
-                                @endif
-                            </a>
-                        </li>
+                        <x-tabs-link tab="datos-personales" :activeTab="$initialTab" icon="user">
+                            Datos Personales
+                        </x-tabs-link>
+
+                        <x-tabs-link 
+                            tab="antecedentes" 
+                            :activeTab="$initialTab" 
+                            icon="file-lines"
+                            :hasError="$errors->hasAny($errorGroups['antecedentes'])"
+                        >
+                            Antecedentes
+                        </x-tabs-link>
+
+                        <x-tabs-link 
+                            tab="informacion-general" 
+                            :activeTab="$initialTab" 
+                            icon="info"
+                            :hasError="$errors->hasAny($errorGroups['informacion_general'])"
+                        >
+                            Información General
+                        </x-tabs-link>
+
+                        <x-tabs-link 
+                            tab="contacto-emergencia" 
+                            :activeTab="$initialTab" 
+                            icon="heart"
+                            :hasError="$errors->hasAny($errorGroups['contacto_emergencia'])"
+                        >
+                            Contacto de Emergencia
+                        </x-tabs-link>
                     </ul>
-        </div>
+                </div>
 
                 {{-- Contenido de las pestañas --}}
                 <div>
                     {{-- Tab 1: Datos Personales --}}
-                    <div x-show="activeTab === 'datos-personales'" x-cloak>
+                    <x-tabs-content tab="datos-personales">
                         {{-- Recuadro informativo con botón --}}
                         <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 mb-6 flex items-start justify-between gap-4">
                             <div class="flex items-start gap-3">
@@ -206,10 +154,10 @@
                                 {{ $patient->user->address ?? '-' }}
                             </p>
                         </div>
-                    </div>
+                    </x-tabs-content>
 
                     {{-- Tab 2: Antecedentes --}}
-                    <div x-show="activeTab === 'antecedentes'" x-cloak style="display: none;">
+                    <x-tabs-content tab="antecedentes">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
                                 <label for="allergies" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -272,10 +220,10 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </x-tabs-content>
 
                     {{-- Tab 3: Información General --}}
-                    <div x-show="activeTab === 'informacion-general'" x-cloak style="display: none;">
+                    <x-tabs-content tab="informacion-general">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
                                 <label for="blood_type_id" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -317,10 +265,10 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </x-tabs-content>
 
                     {{-- Tab 4: Contacto de Emergencia --}}
-                    <div x-show="activeTab === 'contacto-emergencia'" x-cloak style="display: none;">
+                    <x-tabs-content tab="contacto-emergencia">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             <div>
                                 <label for="emergency_contact_name" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">
@@ -392,15 +340,10 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </x-tabs-content>
                 </div>
-            </div>
+            </x-tabs>
         </div>
     </form>
 
-    @push('styles')
-    <style>
-        [x-cloak] { display: none !important; }
-    </style>
-    @endpush
 </x-admin-layout>

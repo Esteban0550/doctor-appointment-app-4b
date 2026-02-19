@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(\"C:\\\\Users\\\\esteb\\\\.config\\\\herd\\\\bin\\\\php.bat\" artisan db:seed --class=DoctorSeeder)"
+    ]
+  }
+}

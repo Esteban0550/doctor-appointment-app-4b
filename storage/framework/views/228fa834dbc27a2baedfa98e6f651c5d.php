@@ -26,8 +26,8 @@ $links = [
     [
         'name' => 'Doctores',
         'icon' => 'fa-solid fa-user-doctor',
-        'href' => '#',
-        'active' => false,
+        'href' => route('admin.doctors.index'),
+        'active' => request()->routeIs('admin.doctors.*'),
     ],
     [
         'name' => 'Pacientes',

@@ -20,35 +20,35 @@ class DoctorSeeder extends Seeder
                 'name' => 'Dr. Carlos Méndez',
                 'email' => 'carlos.mendez@hospital.com',
                 'specialty' => 'Cardiología',
-                'license_number' => 'MED-2026-101',
+                'medical_license_number' => 'MED-2026-101',
                 'biography' => 'Especialista en cardiología con más de 10 años de experiencia en diagnóstico y tratamiento de enfermedades cardiovasculares.',
             ],
             [
                 'name' => 'Dra. Ana García',
                 'email' => 'ana.garcia@hospital.com',
                 'specialty' => 'Pediatría',
-                'license_number' => 'MED-2026-102',
+                'medical_license_number' => 'MED-2026-102',
                 'biography' => 'Pediatra con amplia experiencia en el cuidado de la salud infantil y adolescente.',
             ],
             [
                 'name' => 'Dr. Roberto López',
                 'email' => 'roberto.lopez@hospital.com',
                 'specialty' => 'Neurología',
-                'license_number' => 'MED-2026-103',
+                'medical_license_number' => 'MED-2026-103',
                 'biography' => 'Neurólogo especializado en trastornos del sistema nervioso central y periférico.',
             ],
             [
                 'name' => 'Dra. María Fernández',
                 'email' => 'maria.fernandez@hospital.com',
                 'specialty' => 'Dermatología',
-                'license_number' => 'MED-2026-104',
+                'medical_license_number' => 'MED-2026-104',
                 'biography' => 'Dermatóloga con experiencia en tratamientos de piel, cabello y uñas.',
             ],
             [
                 'name' => 'Dr. José Ramírez',
                 'email' => 'jose.ramirez@hospital.com',
                 'specialty' => 'Oftalmología',
-                'license_number' => 'MED-2026-105',
+                'medical_license_number' => 'MED-2026-105',
                 'biography' => 'Oftalmólogo especializado en cirugía de cataratas y corrección visual.',
             ],
         ];
@@ -69,8 +69,8 @@ class DoctorSeeder extends Seeder
             Doctor::updateOrCreate(
                 ['user_id' => $user->id],
                 [
-                    'specialty_id' => $specialty?->id,
-                    'license_number' => $doctorData['license_number'],
+                    'speciality_id' => $specialty?->id,
+                    'medical_license_number' => $doctorData['medical_license_number'],
                     'biography' => $doctorData['biography'],
                 ]
             );

@@ -24,7 +24,7 @@
                             {{ $doctor->user->name }}
                         </h2>
                         <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">
-                            Licencia: <span class="font-semibold">{{ $doctor->license_number ?? 'N/A' }}</span>
+                            Licencia: <span class="font-semibold">{{ $doctor->medical_license_number ?? 'N/A' }}</span>
                         </p>
                     </div>
                 </div>
@@ -51,12 +51,12 @@
                 <div>
                     <x-native-select
                         label="Especialidad"
-                        name="specialty_id"
+                        name="speciality_id"
                         placeholder="Selecciona una especialidad"
                         :options="$specialties"
                         option-label="name"
                         option-value="id"
-                        :value="old('specialty_id', $doctor->specialty_id)"
+                        :value="old('speciality_id', $doctor->speciality_id)"
                     />
                 </div>
 
@@ -64,9 +64,9 @@
                 <div>
                     <x-input
                         label="Número de licencia médica"
-                        name="license_number"
+                        name="medical_license_number"
                         placeholder="Ej: MED-2025-001234"
-                        :value="old('license_number', $doctor->license_number)"
+                        :value="old('medical_license_number', $doctor->medical_license_number)"
                     />
                 </div>
 

@@ -9,8 +9,8 @@ class Doctor extends Model
 {
     protected $fillable = [
         'user_id',
-        'specialty_id',
-        'license_number',
+        'speciality_id',
+        'medical_license_number',
         'biography',
     ];
 
@@ -27,6 +27,6 @@ class Doctor extends Model
      */
     public function specialty(): BelongsTo
     {
-        return $this->belongsTo(Specialty::class);
+        return $this->belongsTo(Specialty::class, 'speciality_id');
     }
 }

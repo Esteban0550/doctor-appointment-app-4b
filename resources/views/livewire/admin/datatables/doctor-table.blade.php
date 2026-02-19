@@ -59,7 +59,7 @@
                             {{ $doctor->specialty?->name ?? '-' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {{ $doctor->license_number }}
+                            {{ $doctor->medical_license_number }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             {{ $doctor->user->email }}
