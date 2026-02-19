@@ -19,10 +19,16 @@ class DatabaseSeeder extends Seeder
         // llamar a BloodTypeSeeder
         $this->call(BloodTypeSeeder::class);
 
+        // llamar a SpecialtySeeder
+        $this->call(SpecialtySeeder::class);
+
         // Crear un usuario de prueba
         User::factory()->create([
             'name' => 'Nugget de Pollo',
             'email' => 'estebanpriego2005@gmail.com',
             'password' => bcrypt('Moguel2005'),
         ]);
+
+        // llamar a DoctorSeeder
+        $this->call(DoctorSeeder::class);
     }}
