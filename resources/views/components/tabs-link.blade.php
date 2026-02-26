@@ -37,34 +37,8 @@
 ])
 
 @php
-    // Determinar si esta pestaña está activa
-    $isActive = $activeTab === $tab;
-    
     // Clases base (siempre se aplican)
     $baseClasses = 'inline-flex items-center justify-center p-4 border-b-2 rounded-t-lg transition-colors duration-200';
-    
-    // Lógica de colores según estado:
-    // 
-    // Estado 1: Pestaña ACTIVA con ERROR → Roja activa
-    // Estado 2: Pestaña INACTIVA con ERROR → Roja sin borde activo
-    // Estado 3: Pestaña ACTIVA sin ERROR → Azul activa
-    // Estado 4: Pestaña INACTIVA sin ERROR → Gris con hover
-    
-    if ($hasError && $isActive) {
-        // Estado 1: Activa con error
-        $stateClasses = 'text-red-600 border-red-600 dark:text-red-500 dark:border-red-500';
-    } elseif ($hasError && !$isActive) {
-        // Estado 2: Inactiva con error
-        $stateClasses = 'text-red-600 border-red-600';
-    } elseif (!$hasError && $isActive) {
-        // Estado 3: Activa sin error
-        $stateClasses = 'text-blue-600 border-blue-600 dark:text-blue-500 dark:border-blue-500 active';
-    } else {
-        // Estado 4: Inactiva sin error
-        $stateClasses = 'text-gray-500 hover:text-blue-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 border-transparent';
-    }
-    
-    $allClasses = $baseClasses . ' ' . $stateClasses;
 @endphp
 
 <li class="me-2">
@@ -73,9 +47,9 @@
         @click.prevent="activeTab = '{{ $tab }}'"
         {{-- Alpine.js binding reactivo: actualiza clases cuando activeTab cambia --}}
         :class="activeTab === '{{ $tab }}' 
-            ? '{{ $hasError ? 'text-red-600 border-red-600' : 'text-blue-600 border-blue-600' }}' 
-            : '{{ $hasError ? 'text-red-600 border-red-600' : 'text-gray-500 hover:text-blue-600 hover:border-gray-300 border-transparent' }}'"
-        class="{{ $allClasses }}"
+            ? '{{ $hasError ? 'text-red-600 border-red-600 dark:text-red-500 dark:border-red-500' : 'text-blue-600 border-blue-600 dark:text-blue-500 dark:border-blue-500' }}' 
+            : '{{ $hasError ? 'text-red-600 border-transparent dark:text-red-500' : 'text-gray-500 hover:text-blue-600 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300 border-transparent' }}'"
+        class="{{ $baseClasses }}"
     >
         {{-- Ícono opcional --}}
         @if($icon)
