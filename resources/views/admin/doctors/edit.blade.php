@@ -49,15 +49,24 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {{-- Especialidad --}}
                 <div>
+                    @php
+                        $selectedSpecialty = (string) old('speciality_id', $doctor->speciality_id ?? '');
+                    @endphp
                     <x-native-select
                         label="Especialidad"
                         name="speciality_id"
                         placeholder="Selecciona una especialidad"
-                        :options="$specialties"
-                        option-label="name"
-                        option-value="id"
-                        :value="old('speciality_id', $doctor->speciality_id)"
-                    />
+                    >
+                        <option value="">Selecciona una especialidad</option>
+                        @foreach ($specialties as $specialty)
+                            <option
+                                value="{{ $specialty->id }}"
+                                {{ (string) $specialty->id === $selectedSpecialty ? 'selected' : '' }}
+                            >
+                                {{ $specialty->name }}
+                            </option>
+                        @endforeach
+                    </x-native-select>
                 </div>
 
                 {{-- Número de Licencia --}}

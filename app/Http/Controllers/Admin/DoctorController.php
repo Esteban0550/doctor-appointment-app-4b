@@ -62,6 +62,12 @@ class DoctorController extends Controller
             'speciality_id' => ['nullable', 'exists:specialties,id'],
             'medical_license_number' => ['nullable', 'string', 'max:255'],
             'biography' => ['nullable', 'string', 'max:2000'],
+        ], [
+            'speciality_id.exists' => 'La especialidad seleccionada no es valida.',
+            'medical_license_number.max' => 'El numero de licencia medica no debe ser mayor que 255 caracteres.',
+            'medical_license_number.string' => 'El numero de licencia medica debe ser texto.',
+            'biography.max' => 'La biografia no debe ser mayor que 2000 caracteres.',
+            'biography.string' => 'La biografÍa debe ser texto.',
         ]);
 
         DB::beginTransaction();

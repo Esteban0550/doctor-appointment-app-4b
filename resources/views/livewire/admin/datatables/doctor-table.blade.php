@@ -56,10 +56,10 @@
                             {{ $doctor->user->name }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {{ $doctor->specialty?->name ?? '-' }}
+                            {{ $doctor->specialty?->name ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {{ $doctor->medical_license_number }}
+                            {{ $doctor->medical_license_number ?? 'N/A' }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             {{ $doctor->user->email }}

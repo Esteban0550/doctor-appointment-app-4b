@@ -62,8 +62,8 @@ class UserController extends Controller
                 $doctor = Doctor::firstOrCreate(
                     ['user_id' => $user->id],
                     [
-                        'specialty_id' => \App\Models\Specialty::first()->id,
-                        'license_number' => 'TEMP-' . $user->id . '-' . time(),
+                        'speciality_id' => null,
+                        'medical_license_number' => 'TEMP-' . $user->id . '-' . time(),
                     ]
                 );
             }
@@ -141,8 +141,8 @@ class UserController extends Controller
                 Doctor::firstOrCreate(
                     ['user_id' => $user->id],
                     [
-                        'specialty_id' => \App\Models\Specialty::first()->id,
-                        'license_number' => 'TEMP-' . $user->id . '-' . time(),
+                        'speciality_id' => null,
+                        'medical_license_number' => 'TEMP-' . $user->id . '-' . time(),
                     ]
                 );
             }
