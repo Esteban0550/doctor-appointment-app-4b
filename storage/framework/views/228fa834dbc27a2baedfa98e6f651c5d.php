@@ -41,15 +41,15 @@ $links = [
     [
         'name' => 'Agenda',
         'icon' => 'fa-solid fa-calendar-days',
-        'href' => '#',
-        'active' => false,
+        'href' => route('admin.calendar.index'),
+        'active' => request()->routeIs('admin.calendar.*'),
     ],
-    [
-        'name' => 'Citas Médicas',
-        'icon' => 'fa-solid fa-calendar-check',
-        'href' => '#',
-        'active' => false,
-    ],
+        [
+            'name' => 'Citas Médicas',
+            'icon' => 'fa-solid fa-calendar-check',
+            'href' => route('admin.appointments.index'),
+            'active' => request()->routeIs('admin.appointments.*'),
+        ],
     [
         'header' => 'CONFIGURACIÓN',
     ],

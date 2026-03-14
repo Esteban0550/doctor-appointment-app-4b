@@ -71,8 +71,15 @@
                                    title="Editar doctor">
                                     <i class="fa-solid fa-pen-to-square text-xs"></i>
                                 </a>
+                                <a href="{{ route('admin.doctors.schedules', $doctor) }}"
+                                   class="inline-flex items-center justify-center w-8 h-8 text-white bg-blue-500 hover:bg-blue-600 rounded-md shadow-sm hover:shadow transition-all duration-150"
+                                   title="Horarios del doctor">
+                                    <i class="fa-solid fa-clock text-xs"></i>
+                                </a>
                             </div>
                         </td>
+
+
                     </tr>
                 @empty
                     <tr>
