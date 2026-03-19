@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Admin;
 
+use App\Mail\AppointmentConfirmation;
 use App\Models\Appointment;
 use App\Models\Doctor;
 use App\Models\Patient;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 class AppointmentCreate extends Component
@@ -51,7 +53,7 @@ class AppointmentCreate extends Component
     {
         $this->validate();
 
-        Appointment::create([
+        $appointment = Appointment::create([
             'patient_id' => $this->patientId,
             'doctor_id'  => $this->doctorId,
             'date'       => $this->date,
@@ -61,6 +63,11 @@ class AppointmentCreate extends Component
             'reason'     => $this->reason,
             'status'     => 1,
         ]);
+
+        $appointment->load(['patient.user', 'doctor.user', 'doctor.specialty']);
+
+        Mail::to($appointment->patient->user->email)
+            ->send(new AppointmentConfirmation($appointment));
 
         session()->flash('swal', [
             'icon'  => 'success',
