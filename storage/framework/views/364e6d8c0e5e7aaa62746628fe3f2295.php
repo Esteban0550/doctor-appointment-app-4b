@@ -9,7 +9,7 @@
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                     </svg>
                 </button>
-                
+
                 
                 <a href="/" class="flex ms-2 md:me-24 transition-opacity duration-150 hover:opacity-80">
                     <svg class="h-8 w-8 me-2 text-blue-600 dark:text-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -19,31 +19,31 @@
                     <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Healthify</span>
                 </a>
             </div>
-            
+
             <div class="flex items-center">
 
-                <?php if(auth()->guard()->check()): ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(auth()->guard()->check()): ?>
                     <!-- Profile Dropdown -->
                     <div class="ms-3 relative" x-data="{ open: false }" @click.away="open = false">
                         <button type="button" @click="open = !open" class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-150 cursor-pointer hover:opacity-80">
-                            <?php if(Auth::user()->profile_photo_url): ?>
+                            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(Auth::user()->profile_photo_url): ?>
                                 <img class="size-8 rounded-full object-cover" src="<?php echo e(Auth::user()->profile_photo_url); ?>" alt="<?php echo e(Auth::user()->name); ?>" />
                             <?php else: ?>
                                 <span class="inline-flex items-center justify-center size-8 rounded-full bg-blue-600 text-white font-medium">
                                     <?php
                                         $names = explode(' ', Auth::user()->name);
-                                        $initials = count($names) > 1 
+                                        $initials = count($names) > 1
                                             ? strtoupper(substr($names[0], 0, 1) . substr(end($names), 0, 1))
                                             : strtoupper(substr($names[0], 0, 2));
                                     ?>
                                     <?php echo e($initials); ?>
 
                                 </span>
-                            <?php endif; ?>
+                            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                         </button>
 
                         <!-- Dropdown Menu -->
-                        <div x-show="open" 
+                        <div x-show="open"
                              x-transition:enter="transition ease-out duration-200"
                              x-transition:enter-start="transform opacity-0 scale-95"
                              x-transition:enter-end="transform opacity-100 scale-100"
@@ -65,27 +65,26 @@
                             </div>
                         </div>
                     </div>
-                
+
                 <?php else: ?>
                     
                     <div class="flex items-center ms-3">
-                        <?php if(Route::has('login')): ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(Route::has('login')): ?>
                             <a href="<?php echo e(route('login')); ?>" class="text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-lg transition-colors duration-150">
                                 Log in
                             </a>
-                        <?php endif; ?>
-                        <?php if(Route::has('register')): ?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(Route::has('register')): ?>
                             
                             <a href="<?php echo e(route('register')); ?>" class="ms-3 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg transition-colors duration-150">
                                 Register
                             </a>
-                        <?php endif; ?>
+                        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     </div>
-                <?php endif; ?>
-                
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+
             </div>
         </div>
     </div>
 </nav>
-
 <?php /**PATH C:\Users\esteb\OneDrive\Desktop\doctor-appointment-app-4b\resources\views/layouts/includes/admin/navigation.blade.php ENDPATH**/ ?>

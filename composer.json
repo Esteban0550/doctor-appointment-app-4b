@@ -18,8 +18,11 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "livewire/livewire": "^3.6.4",
+        "nyholm/psr7": "^1.8",
+        "railsware/mailtrap-php": "^3.10",
         "rappasoft/laravel-livewire-tables": "^3.7",
         "spatie/laravel-permission": "^6.21",
+        "symfony/http-client": "^7.4",
         "wireui/wireui": "^2.4"
     },
     "require-dev": {
