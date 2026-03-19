@@ -1,7 +1,15 @@
 {
   "permissions": {
     "allow": [
-      "Bash(\"C:\\\\Users\\\\esteb\\\\.config\\\\herd\\\\bin\\\\php.bat\" artisan db:seed --class=DoctorSeeder)"
+      "Bash(\"C:\\\\Users\\\\esteb\\\\.config\\\\herd\\\\bin\\\\php.bat\" artisan db:seed --class=DoctorSeeder)",
+      "Bash(find:*)",
+      "Bash(cd:*)",
+      "Bash(where composer:*)",
+      "Bash(where composer.bat)",
+      "Read(//c/ProgramData/ComposerSetup/**)",
+      "Read(//c/Users/esteb/AppData/Roaming/Composer/vendor/**)",
+      "Bash(where php:*)",
+      "Bash(curl:*)"
     ]
   }
 }

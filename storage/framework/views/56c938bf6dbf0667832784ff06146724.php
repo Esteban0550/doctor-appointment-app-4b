@@ -49,7 +49,7 @@ unset($__defined_vars, $__key, $__value); ?>
         <!-- Scripts -->
         <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
         <script src="https://kit.fontawesome.com/a7de8752fc.js" crossorigin="anonymous"></script>
-        
+
         <!-- Alpine.js -->
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
 
@@ -87,15 +87,14 @@ unset($__defined_vars, $__key, $__value); ?>
         <?php echo $__env->yieldPushContent('modals'); ?>
 
         <!-- SweetAlert2 desde sesión -->
-        <?php if(session('swal')): ?>
+        <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(session('swal')): ?>
             <script>
                 Swal.fire(<?php echo json_encode(session('swal'), 15, 512) ?>);
             </script>
-        <?php endif; ?>
+        <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
         <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
     </body>
 </html>
-
 <?php /**PATH C:\Users\esteb\OneDrive\Desktop\doctor-appointment-app-4b\resources\views/layouts/admin.blade.php ENDPATH**/ ?>

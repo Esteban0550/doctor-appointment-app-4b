@@ -5,7 +5,7 @@
     <title>Comprobante de Cita Médica</title>
     <style>
         body {
-            font-family: 'DejaVu Sans', Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 14px;
             color: #333;
             margin: 0;
