@@ -9,7 +9,7 @@
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
                     </svg>
                 </button>
-                
+
                 {{-- Añadida transición de opacidad al logo --}}
                 <a href="/" class="flex ms-2 md:me-24 transition-opacity duration-150 hover:opacity-80">
                     <svg class="h-8 w-8 me-2 text-blue-600 dark:text-blue-500" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -19,7 +19,7 @@
                     <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Healthify</span>
                 </a>
             </div>
-            
+
             <div class="flex items-center">
 
                 @auth
@@ -32,7 +32,7 @@
                                 <span class="inline-flex items-center justify-center size-8 rounded-full bg-blue-600 text-white font-medium">
                                     @php
                                         $names = explode(' ', Auth::user()->name);
-                                        $initials = count($names) > 1 
+                                        $initials = count($names) > 1
                                             ? strtoupper(substr($names[0], 0, 1) . substr(end($names), 0, 1))
                                             : strtoupper(substr($names[0], 0, 2));
                                     @endphp
@@ -42,7 +42,7 @@
                         </button>
 
                         <!-- Dropdown Menu -->
-                        <div x-show="open" 
+                        <div x-show="open"
                              x-transition:enter="transition ease-out duration-200"
                              x-transition:enter-start="transform opacity-0 scale-95"
                              x-transition:enter-end="transform opacity-100 scale-100"
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                
+
                 @else
                     {{-- ESTILOS MEJORADOS para botones de Login/Register --}}
                     <div class="flex items-center ms-3">
@@ -81,9 +81,8 @@
                         @endif
                     </div>
                 @endauth
-                
+
             </div>
         </div>
     </div>
 </nav>
-

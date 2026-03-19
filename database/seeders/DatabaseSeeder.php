@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         // llamar a RoleSeeder
         $this->call(RoleSeeder::class);
-        
+
         // llamar a BloodTypeSeeder
         $this->call(BloodTypeSeeder::class);
 
@@ -31,4 +31,5 @@ class DatabaseSeeder extends Seeder
 
         // llamar a DoctorSeeder
         $this->call(DoctorSeeder::class);
-    }}
+    }
+}

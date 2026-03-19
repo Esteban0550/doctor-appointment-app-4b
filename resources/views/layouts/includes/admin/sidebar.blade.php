@@ -85,7 +85,7 @@ $links = [
                         <ul id="dropdown-example" class="hidden py-2 space-y-2">
                             @foreach ($link['submenu'] as $item)
                             <li>
-                                <a href="{{ $item['href'] }}" 
+                                <a href="{{ $item['href'] }}"
                                 class="flex items-center w-full p-2 text-gray-700 transition duration-200 rounded-lg pl-11 group hover:bg-blue-50 hover:text-blue-600 dark:text-gray-200 dark:hover:bg-gray-700">
                                     {{ $item['name'] }}
                                 </a>
@@ -93,7 +93,7 @@ $links = [
                             @endforeach
                         </ul>
                     @else
-                        <a href="{{ $link['href'] }}" 
+                        <a href="{{ $link['href'] }}"
                            class="flex items-center p-3 text-gray-700 rounded-lg transition duration-200 group hover:bg-blue-50 hover:text-blue-600 hover:shadow-sm dark:text-gray-200 dark:hover:bg-gray-700 {{ $link['active'] ? 'bg-blue-100 text-blue-700 shadow-sm dark:bg-blue-900 dark:text-blue-200' : '' }}">
                             <span class="w-6 h-6 inline-flex justify-center items-center {{ $link['active'] ? 'text-blue-600' : 'text-gray-500 group-hover:text-blue-600' }} transition duration-200">
                                 <i class="{{ $link['icon'] }}"></i>
