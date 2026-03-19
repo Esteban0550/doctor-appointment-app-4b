@@ -12,6 +12,8 @@ class AppointmentConfirmation extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public string $pdfBase64 = '';
+
     public function __construct(public Appointment $appointment)
     {
     }
@@ -22,20 +24,9 @@ class AppointmentConfirmation extends Mailable
             'appointment' => $this->appointment,
         ]);
 
-        $tempPath = storage_path('app/comprobante-cita-' . $this->appointment->id . '.pdf');
-        file_put_contents($tempPath, $pdf->output());
+        $this->pdfBase64 = base64_encode($pdf->output());
 
-        $mail = $this->subject('Comprobante de Cita Médica')
-            ->view('emails.appointment-confirmation')
-            ->attach($tempPath, [
-                'as' => 'comprobante-cita.pdf',
-                'mime' => 'application/pdf',
-            ]);
-
-        register_shutdown_function(function () use ($tempPath) {
-            @unlink($tempPath);
-        });
-
-        return $mail;
+        return $this->subject('Comprobante de Cita Médica')
+            ->view('emails.appointment-confirmation');
     }
 }
