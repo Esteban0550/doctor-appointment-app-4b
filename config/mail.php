@@ -79,6 +79,10 @@ return [
             'transport' => 'array',
         ],
 
+        'mailtrap-sdk' => [
+            'transport' => 'mailtrap-sdk',
+        ],
+
         'failover' => [
             'transport' => 'failover',
             'mailers' => [
@@ -114,5 +118,7 @@ return [
         'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
+
+    'admin_email' => env('ADMIN_EMAIL', 'admin@example.com'),
 
 ];
